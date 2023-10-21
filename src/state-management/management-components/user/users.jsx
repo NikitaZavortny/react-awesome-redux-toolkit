@@ -1,33 +1,22 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addUserAction, removeUserAction} from "../../store/users-reducer";
-import { fetchUsers } from "../AsyncActions/AddApiUsers";
+import {FetchUsers} from "../../redux-toolkit/store/reducers/Action-creators";
+import { usersSlice } from "../../redux-toolkit/store/reducers/userSlice";
 
 function Users() {
-
-    const users = useSelector(state=>state.users.users);
+    const {users} = useSelector(state=>state.usersReducer);
     const dispatch = useDispatch();
-
-    const AddUser = (username)=>{
-        dispatch(addUserAction(username));
-    }
-
-    const RemoveUser = (id) => {
-        dispatch(removeUserAction(id));
-    }
-
-    const FetchUsers = ()=>{
-        dispatch(fetchUsers());
-    }
+    const {AddUser, RemoveUser} = usersSlice.actions;
 
     return ( 
         <>
-            <button className="btn btn-primary" onClick={()=>AddUser(prompt())}>Add User</button>
-            <button className="btn btn-primary" onClick={() => FetchUsers()}>Fetch User</button>
+            <button className="btn btn-primary" onClick={() => dispatch(AddUser(prompt()))}>Add User</button>
+            <button className="btn btn-primary" onClick={() => dispatch(FetchUsers())}>Fetch User</button>
             {users.length > 0 ?
                 <div>
                     {users.map((user) =>
                         <div>
-                            <h1>{user.name}    <button className="btn btn-danger" onClick={() => RemoveUser(user.id)}>Remove User</button></h1>
+                            <h1>{user.name}    <button className="btn btn-danger" onClick={() => dispatch(RemoveUser(user.id))}>Remove User</button></h1>
                         </div>
                     )}
                 </div>

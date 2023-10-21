@@ -15,7 +15,7 @@ function Navbar() {
                                 <a class="nav-link active" href="/">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/redux">Redux-Saga</a>
+                                <a class="nav-link" href="/redux-toolkit">Redux-Toolkit</a>
                             </li>
                         </ul>
                     </div>
