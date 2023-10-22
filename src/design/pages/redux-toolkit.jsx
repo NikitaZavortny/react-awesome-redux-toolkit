@@ -10,7 +10,7 @@ function ReduxToolkit() {
     return (
         <div className="text-white">
             <Home>
-                <CurveTransition upcolor="red" lowcolor="##DB9D2E" bgcolor="red">
+                <CurveTransition backcolor = "red">
                     <h1>This was realised with redux-toolkit</h1>
                 </CurveTransition>
 
